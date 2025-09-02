@@ -1,7 +1,7 @@
 {
   "name": "element-plus-vite-starter",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "license": "MIT",
   "homepage": "https://vite-starter.element-plus.org",
@@ -47,6 +47,8 @@
     "unplugin-vue-components": "^28.8.0",
     "unplugin-vue-router": "^0.14.0",
     "vite": "^7.0.6",
+    "vite-plugin-inspect": "^11.3.3",
+    "vite-plugin-vue-inspector": "^5.3.2",
     "vite-ssg": "^28.0.0",
     "vue-tsc": "^3.0.5"
   }

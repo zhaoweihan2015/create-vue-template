@@ -6,6 +6,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import VueRouter from 'unplugin-vue-router/vite';
 import AutoImport from 'unplugin-auto-import/vite';
+import Inspector from 'vite-plugin-vue-inspector';
+import Inspect from 'vite-plugin-inspect';
 
 import { defineConfig } from 'vite';
 
@@ -61,6 +63,14 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     Unocss(),
+
+    // A vite plugin which provides the ability that to jump to the local IDE when you click the element of browser automatically. It supports Vue2 & 3 & SSR.
+    Inspector({
+      enabled: true,
+      toggleButtonVisibility: 'always',
+      launchEditor: 'cursor',
+    }),
+    Inspect(),
   ],
 
   ssr: {
