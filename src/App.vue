@@ -2,9 +2,10 @@
 
 <template>
   <el-config-provider namespace="ep">
-    <base-layout>
-      <RouterView />
+    <base-layout v-if="$route.meta.layout !== false">
+      <router-view />
     </base-layout>
+    <router-view v-else />
   </el-config-provider>
 </template>
 
