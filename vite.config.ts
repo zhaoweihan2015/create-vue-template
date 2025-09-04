@@ -16,6 +16,11 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const enableCompression = env.VITE_ENABLE_COMPRESSION === 'true';
+  const isProduction = mode === 'production';
+
+  const routerExclude = isProduction
+    ? ['**/components/**', '**/_devs_/**'] // 生产环境排除开发用工具组件
+    : ['**/components/**'];
 
   return {
     resolve: {
@@ -38,7 +43,7 @@ export default defineConfig(({ mode }) => {
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
         extensions: ['.vue', '.md'],
-        exclude: ['**/components/**'],
+        exclude: routerExclude,
         dts: 'src/typed-router.d.ts',
       }),
 
