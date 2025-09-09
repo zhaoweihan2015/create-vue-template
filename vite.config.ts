@@ -64,6 +64,9 @@ export default defineConfig(({ mode }) => {
           'vue', // 自动导入 Vue Composition API
           'vue-router', // 自动导入 useRouter / useRoute
           'pinia', // 自动导入 defineStore / storeToRefs
+          {
+            'vue-request': ['useRequest'], // 自动导入 useRequest
+          },
         ],
         dirs: ['src/composables'], // 可选：自动导入你自己写的组合函数
         vueTemplate: true, // 在模板中也可直接使用
@@ -100,7 +103,7 @@ export default defineConfig(({ mode }) => {
       port: 8080,
       proxy: {
         '/api': {
-          target: 'http://127.0.0.1:8080',
+          target: 'http://127.0.0.1:5001',
           changeOrigin: true,
         },
       },

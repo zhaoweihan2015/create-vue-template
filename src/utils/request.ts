@@ -1,5 +1,5 @@
 // src/utils/request.ts
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 
@@ -16,7 +16,7 @@ request.interceptors.request.use((config) => {
 
 // 响应拦截器
 request.interceptors.response.use(
-  (response) => response.data,
+  (response) => response,
   (error) => {
     // 401 未授权
     if (error.status === 401) {
@@ -28,26 +28,28 @@ request.interceptors.response.use(
   },
 );
 
-export const customRequest = <T>(
+export const customRequest = async <T>(
   config: AxiosRequestConfig,
   options?: AxiosRequestConfig,
-): Promise<T> => {
+): Promise<AxiosResponse<T, any>> => {
   const source = axios.CancelToken.source();
 
-  const promise = request({
+  const promise = await request({
     ...config,
     ...options,
     cancelToken: source.token,
-  }).then(({ data }) => data);
+  });
 
   // @ts-ignore
   promise.cancel = () => {
-    source.cancel('Query was cancelled');
+    source.cancel('请求被取消');
   };
 
-  return promise;
+  return promise.data;
 };
 
 export type ErrorType<Error> = AxiosError<Error>;
 
 export type BodyType<BodyData> = BodyData;
+
+export default customRequest;

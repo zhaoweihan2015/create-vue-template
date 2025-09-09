@@ -2,7 +2,7 @@ module.exports = {
   petstore: {
     input: './doc/example.yaml',
     output: {
-      mode: 'tags',
+      mode: 'split',
       target: './src/api',
       client: 'axios',
       override: {

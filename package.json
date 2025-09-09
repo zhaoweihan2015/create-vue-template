@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
-    "swagger": "orval --config ./orval.config.cjs && npx prettier --write src/api/**/*.ts",
+    "swagger": "rimraf ./src/api && orval --config ./orval.config.cjs && npx prettier --write src/api/**/*.ts",
     "build:compress": "cross-env VITE_ENABLE_COMPRESSION=true vite build",
     "build": "cross-env VITE_ENABLE_COMPRESSION=false vite build"
   },
@@ -43,6 +43,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "orval": "^7.11.2",
     "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
     "sass": "^1.89.2",
     "typescript": "^5.9.2",
     "unocss": "^66.4.0",
